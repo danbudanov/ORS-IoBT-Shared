@@ -7,7 +7,7 @@ hold off;
 
 config.k = 3;
 
-eAvailable = .133; % .32J min with current config at k=3
+eAvailable = .32; % .32J min with current config at k=3
 
 [eWindow, eWindowMCU, eWindowTRX, windowADC, windowTRX, bytes] = operateWindow(eAvailable, config);
 

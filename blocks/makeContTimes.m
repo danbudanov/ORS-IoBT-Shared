@@ -1,4 +1,6 @@
 function contTimes = makeContTimes(vec, k, T)
+% makes multiple time windows be concatanated (times change, data remains
+% the same)
 contTimes = [];
 for i = 0:k-1
     contTimes = [contTimes, vec + i*T];

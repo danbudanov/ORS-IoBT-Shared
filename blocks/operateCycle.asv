@@ -1,4 +1,4 @@
-function [eNet, eNetMCU, eNetTRX, cycle, D] = operateCycle(config, n)
+function [eNet, eNetMCU, eNetTRX, cycleADC, cycleTRX] = operateCycle(config, n)
 
 % Generaes plots for TRX and MCU %
 
@@ -62,8 +62,6 @@ trxStarts = openToSample - 1e-9;
 trxEnds = trxStarts + tTRX;
 trxStop = trxEnds + 1e-9;
 
-cycle.TRX = [0 trxBefore trxStarts trxEnds trxStop config.T_tx; pTRX_Sleep pTRX_Sleep pTRX pTRX pTRX_Sleep pTRX_Sleep];
+cycleTRX = [0 trxBefore trxStarts trxEnds trxStop config.T_tx; pTRX_Sleep pTRX_Sleep pTRX pTRX pTRX_Sleep pTRX_Sleep];
 
-%% Proportional duty cycles
-[D.MCU, D.TRX] = dutyCycle(config, n, tTRX, tMCU);
 end

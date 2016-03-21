@@ -32,15 +32,15 @@ if n < 0
     n = 0;
 end
 disp(n)
-[eNet, eNetMCU, eNetTRX, cycleADC, cycleTRX] = operateCycle(config, n);
+[eNet, eNetMCU, eNetTRX, cycle, D] = operateCycle(config, n);
 %% create energy usage profiles for k cycles
 eWindow = eNet * config.k;
 eWindowMCU = eNetMCU * config.k;
 eWindowTRX = eNetTRX * config.k;
-windowADC = repmat(cycleADC, 1, config.k);
-windowADC(1,:) = makeContTimes(cycleADC(1,:), config.k, config.T_tx);
-windowTRX = repmat(cycleTRX, 1, config.k);
-windowTRX(1,:) = makeContTimes(cycleTRX(1,:), config.k, config.T_tx);
+windowADC = repmat(cycle.ADC, 1, config.k);
+windowADC(1,:) = makeContTimes(cycle.ADC(1,:), config.k, config.T_tx);
+windowTRX = repmat(cycle.TRX, 1, config.k);
+windowTRX(1,:) = makeContTimes(cycle.TRX(1,:), config.k, config.T_tx);
 
 
 bytes = n * config.k * length(config.adcProfile) * (config.trials ^ config.txDataParam);
