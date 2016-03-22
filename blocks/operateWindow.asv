@@ -32,16 +32,13 @@ if n > 0
     [eNet, eNetMCU, eNetTRX, cycle, D] = operateCycle(config, n);
     
 else
-    n = 0;
+    n = 0; 
     eMCU = mcuSleep(config, config.T_tx*config.k);
     eTRX = trxSleep(config, config.T_tx*config.k);
     eNetMCU = eMCU;
     eNetTRX = eTRX;
     eNet = eNetMCU + eNetTRX;
-    cycle.ADC = [0 (config.k*config.T_tx); (eMCU/(config.T_tx*config.k)).*ones(1, 2)];
-    cycle.TRX = [0 (config.k*config.T_tx); (eTRX/(config.T_tx*config.k)).*ones(1, 2)];
-    D.MCU = 0;
-    D.TRX = 0;
+    cycle.ADC = [0 (config.k*config.T_tx)l; eMCU(config.T_tx*config.k).*ones(1, 2)]
 end
 %% create energy usage profiles for k cycles
 eWindow = eNet * config.k;
