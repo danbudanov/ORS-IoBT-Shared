@@ -30,6 +30,7 @@ hold off;
 subplot(3,1,2);
 plot(windowTRX(1,:), 100*D.MCU*ones(1, length(windowTRX(1,:))), 'b');
 axis([0 (config.k*config.T_tx) 0 2]);
+
 subplot(3,1,3);
 plot(windowTRX(1,:), 100*D.TRX*ones(1, length(windowTRX(1,:))), 'r');
 
