@@ -1,5 +1,5 @@
-function [eWindow, eWindowMCU, eWindowTRX, windowADC, windowTRX, bytes] = operateWindow(eAvailable, config)
-    %{
+function [eWindow, eWindowMCU, eWindowTRX, windowADC, windowTRX, bytes, D] = operateWindow(eAvailable, config)
+%{
         usage:
         operateWindow(eAvailable, config);
             %windowLength -- in seconds
@@ -15,7 +15,7 @@ function [eWindow, eWindowMCU, eWindowTRX, windowADC, windowTRX, bytes] = operat
             -----------numBytesTx / numBytesRx -- the number of bytes that the node will be
                 transmitting/receiving------XXXXX-----------------------
             dataRate
-    %}
+%}
 %{
 % %generate MCU block for sampling
 %     [eMCUSample tMCUSample bytes] = operateADC(config.vIn, config.adcProfile);
@@ -28,11 +28,14 @@ function [eWindow, eWindowMCU, eWindowTRX, windowADC, windowTRX, bytes] = operat
 %}
 % --windowLength = config.T_tx * config.k;--
 n = double(findN( eAvailable/config.k, config));
-if n < 0
-    n = 0;
+if n > 0
+    [eNet, eNetMCU, eNetTRX, cycle, D] = operateCycle(config, n);
+    
+else
+    n = 0; 
+    eMCU = mcuSleep(config, config.T_tx*config.k);
+    eTRX = trxSleep(config, config.T_tx*config.k);
 end
-disp(n)
-[eNet, eNetMCU, eNetTRX, cycle, D] = operateCycle(config, n);
 %% create energy usage profiles for k cycles
 eWindow = eNet * config.k;
 eWindowMCU = eNetMCU * config.k;
@@ -44,8 +47,3 @@ windowTRX(1,:) = makeContTimes(cycle.TRX(1,:), config.k, config.T_tx);
 
 
 bytes = n * config.k * length(config.adcProfile) * (config.trials ^ config.txDataParam);
-
-%% generate duty cycle info wrt bytes transmitted
-
-
-end
