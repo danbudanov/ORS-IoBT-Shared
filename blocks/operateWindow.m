@@ -1,5 +1,16 @@
 function [eWindow, eWindowMCU, eWindowTRX, windowADC, windowTRX, bytes, D] = operateWindow(eAvailable, config)
 %{
+########################################################################################
+PROBLEM:
+operateWindow(.319950148, config)
+
+ans =
+
+    0.9546
+
+^^when last digit >8 stops showing .9546, remains at .95.. for any vals
+below
+#########################################################################################
         usage:
         operateWindow(eAvailable, config);
             %windowLength -- in seconds
