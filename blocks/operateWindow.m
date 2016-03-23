@@ -47,13 +47,11 @@ if n > 0
     
 else
     n = 0;
-    eMCU = mcuSleep(config, config.T_tx*config.k);
-    eTRX = trxSleep(config, config.T_tx*config.k);
-    eNetMCU = eMCU;
-    eNetTRX = eTRX;
+    eNetMCU = mcuSleep(config, config.T_tx);
+    eNetTRX = trxSleep(config, config.T_tx);
     eNet = eNetMCU + eNetTRX;
-    cycle.ADC = [0 (config.k*config.T_tx); (eMCU/(config.T_tx*config.k)).*ones(1, 2)];
-    cycle.TRX = [0 (config.k*config.T_tx); (eTRX/(config.T_tx*config.k)).*ones(1, 2)];
+    cycle.ADC = [0 (config.T_tx); (eNetMCU/(config.T_tx)).*ones(1, 2)];
+    cycle.TRX = [0 (config.T_tx); (eNetTRX/(config.T_tx)).*ones(1, 2)];
     D.MCU = 0;
     D.TRX = 0;
 end
