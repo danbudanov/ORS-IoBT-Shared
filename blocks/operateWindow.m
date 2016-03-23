@@ -10,6 +10,9 @@ ans =
 
 ^^when last digit >8 stops showing .9546, remains at .95.. for any vals
 below
+
+
+findN(.106 (=.32/3), config) = 0
 #########################################################################################
         usage:
         operateWindow(eAvailable, config);
