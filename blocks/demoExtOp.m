@@ -5,9 +5,9 @@ setup;
 % eAvVec = [.5 .32 0 .4 .5 .2 .6];
 % troublesome ex: eAvVec = 0.4314    0.9106    0.1818    0.2638    0.1455    0.1361    0.8693    0.5797    0.5499    0.1450
 % eAvVec = [0.4314    0.9106    0.1818    0.2638    0.1455    0.1361    0.8693    0.5797    0.1450];
-% eAvVec = [0.4314    0.9106     0.8693    0.5797    0.1450];
+ eAvVec = [0.4314    0.9106     0.8693    0.5797    0.1450];
 % eAvVec = [0.4314    0.9106    0.1818    0.2638    0.1455    0.1361    0.8693    0.5797    0.5499    0.1450];
- eAvVec = rand(1, 10);
+% eAvVec = rand(1, 10);
 %eAvVec = rand(1, 1000);
 %eAvVec = [.32 .32 .31];
 [opADC, opTRX ,D_MCU, D_TRX] = extendedOperation(config, eAvVec);
@@ -34,7 +34,7 @@ xlabel('Time (seconds)');
 ylabel('Power (watts)');
 titleText = sprintf('Power usage for %d windows', length(eAvVec));
 title(titleText);
-
+legend('Sample Readings', 'Transmission');
 subplot(4,1,3)
 D_MCU = [D_MCU; D_MCU];
 D_MCU = D_MCU(:)';
