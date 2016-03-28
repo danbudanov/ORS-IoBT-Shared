@@ -1,8 +1,8 @@
-function displayExtOp(eAvVec)
+function displayFull(eAvVec)
 close all;
 setup;
 
-[opADC, opTRX ,D_MCU, D_TRX, bytes] = extendedOperation(config, eAvVec);
+[opADC, opTRX ,D_MCU, D_TRX, bytesVec] = extendedOperation(config, eAvVec);
 
 % Available Energy Plot
 subplot(4,1,1)
@@ -30,24 +30,29 @@ titleText = sprintf('Power usage for %d windows', length(eAvVec));
 title(titleText);
 legend('Sample Readings', 'Transmission');
 
-% MCU Duty Cycle Plot
+% Net Duty Cycle Plot
 subplot(4,1,3)
 D_MCU = [D_MCU; D_MCU];
 D_MCU = D_MCU(:)';
-plot(times, D_MCU*100)
-xlabel('Time (seconds)');
-ylabel('D (%)');
-title('MCU Duty Cycle');
-
-% TRX Duty cycle plot
-subplot(4,1,4)
 D_TRX = [D_TRX; D_TRX];
 D_TRX = D_TRX(:)';
-plot(times, D_TRX*100);
+plot(times, D_MCU*100, 'b');
+hold on;
+plot(times, D_TRX*100, 'r');
 xlabel('Time (seconds)');
 ylabel('D (%)');
-title('TRX Duty Cycle');
+title('Duty Cycle');
+
 
 % Possibility: Plot both duty cycles on same plot?
 
-end % displayExtOp
+% Plot bytes transmitted
+subplot(4,1,4);
+bytesVec = [bytesVec; bytesVec];
+bytesVec = bytesVec(:)';
+plot(times, bytesVec);
+xlabel('Time (seconds)');
+ylabel('Bytes');
+title('Bytes Transmitted');
+
+end % displayFull
