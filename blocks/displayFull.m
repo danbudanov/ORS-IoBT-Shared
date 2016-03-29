@@ -4,6 +4,11 @@ setup;
 
 [opADC, opTRX ,D_MCU, D_TRX, bytesVec] = extendedOperation(config, eAvVec);
 
+avgTRX = mean(D_TRX);
+avgMCU = mean(D_MCU);
+varTRX = var(D_TRX);
+varMCU = var(D_MCU);
+
 % Available Energy Plot
 subplot(4,1,1)
 numWin = 0:length(eAvVec)-1;
@@ -41,11 +46,12 @@ hold on;
 plot(times, D_TRX*100, 'r');
 
 % statistics (experimental)
-dTrxAvg = dutyCycleStats(times, D_TRX);
+%--------------------------------------------------------------------------
+dTrxAvg = dutyCycleStats(times, D_TRX)
 dMcuAvg = dutyCycleStats(times, D_MCU);
-plot([times(1), times(end)],[dTrxAvg, dTrxAvg] * 100, 'r--');
-plot([times(1), times(end)],[dMcuAvg, dMcuAvg] * 100, 'b--');
-
+plot([times(1), times(end)],[avgTRX, avgTRX] * 100, 'r--');
+plot([times(1), times(end)],[avgMCU, avgMCU] * 100, 'b--');
+%--------------------------------------------------------------------------
 
 xlabel('Time (seconds)');
 ylabel('D (%)');
