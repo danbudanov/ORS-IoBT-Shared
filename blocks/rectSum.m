@@ -13,5 +13,6 @@ switch mode
 end
 xx = diff(x);
 areaVec = xx .* yy;
-rsum = cumsum(areaVec);
+% rsum = cumsum(areaVec);
+rsum = sum(areaVec);
 end

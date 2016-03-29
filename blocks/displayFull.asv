@@ -39,18 +39,16 @@ D_TRX = D_TRX(:)';
 plot(times, D_MCU*100, 'b');
 hold on;
 plot(times, D_TRX*100, 'r');
-
-% statistics (experimental)
-dTrxAvg = dutyCycleStats(times, D_TRX);
-dMcuAvg = dutyCycleStats(times, D_MCU);
-plot([times(1), times(end)],[dTrxAvg, dTrxAvg] * 100, 'r--');
-plot([times(1), times(end)],[dMcuAvg, dMcuAvg] * 100, 'b--');
-
-
 xlabel('Time (seconds)');
 ylabel('D (%)');
 title('Duty Cycle');
 
+% statistics (experimental)
+dTrxAvg = dutyCycleStats(times, D_TRX);
+dMcuAvg = dutyCycleStats(times, D_MCU);
+plot(dTrxAvg);
+plot(dMcuAv
+% Possibility: Plot both duty cycles on same plot?
 
 % Plot bytes transmitted
 subplot(4,1,4);
