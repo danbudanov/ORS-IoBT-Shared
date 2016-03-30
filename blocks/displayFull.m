@@ -45,13 +45,9 @@ plot(times, D_MCU*100, 'b');
 hold on;
 plot(times, D_TRX*100, 'r');
 
-% statistics (experimental)
-%--------------------------------------------------------------------------
-dTrxAvg = dutyCycleStats(times, D_TRX)
-dMcuAvg = dutyCycleStats(times, D_MCU);
+% plot averages
 plot([times(1), times(end)],[avgTRX, avgTRX] * 100, 'r--');
 plot([times(1), times(end)],[avgMCU, avgMCU] * 100, 'b--');
-%--------------------------------------------------------------------------
 
 xlabel('Time (seconds)');
 ylabel('D (%)');
