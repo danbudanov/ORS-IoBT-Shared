@@ -1,10 +1,11 @@
-function [opCycleADC opCycleTRX, D_MCU, D_TRX, bytesVec] = extendedOperation(config, vec)
+function [opCycleADC opCycleTRX, D_MCU, D_TRX, bytesVec, eNetExp] = extendedOperation(config, vec)
 % vector vec contains available energies
 opCycleADC = [];
 opCycleTRX = [];
 D_MCU = [];
 D_TRX = [];
 bytesVec = [];
+eNetExp = [];
 for i = 1:length(vec)
     [eWindow, eWindowMCU, eWindowTRX, windowADC, windowTRX, bytes, D] = operateWindow(vec(i), config);
     windowADC(1,:) = windowADC(1,:) + (i-1)*config.T_tx*config.k;
@@ -15,5 +16,7 @@ for i = 1:length(vec)
     D_MCU = [D_MCU D.MCU];
     D_TRX = [D_TRX D.TRX];
     bytesVec = [bytesVec bytes];
+    
+    eNetExp = [eNetExp eWindow];
 end
 end

@@ -1,7 +1,7 @@
 %Run Scirpt for  Simulation
 parpath = cd(cd('..'));
-addpath([parpath '\Power']);
-addpath([parpath '\blocks']);
+addpath([parpath '\Power');
+addpath([par
 
 v = UserInput();
 win = v.data.window;
@@ -16,16 +16,16 @@ disp(E_av(end))
 
 disp('Start Operation')
 setup;
-[~, ~, ~, ~, ~, eNetExp] = extendedOperation(config, E_av);
+[opADC, opTRX ,D_MCU, D_TRX, eNeed] = extendedOperation(config, E_av);
 disp('Finish Operation')
 
-[eSC] = storage(E_av,eNetExp,v.SC,win);
+[eSC] = storage(E_av,eNeed,v.SC,win);
 disp('Energy Available in SuperCap in the Last Window (J):')
 disp(eSC(end))
 
 %Add FeedBack
-displayFull(E_av, eSC);
-% PlotVal
+
+PlotVal
 
 
 %% Predictive Loop
@@ -48,10 +48,10 @@ disp('Energy Available in the Next Window (J):')
 disp(E_av(end))
 
 disp('Start Operation')
-[opADC, opTRX ,D_MCU, D_TRX, eNetExp] = extendedOperation(config, E_av);
+[opADC, opTRX ,D_MCU, D_TRX, eNeed] = extendedOperation(config, E_av);
 disp('Finish Operation')
 
-[eSC] = storage(E_av,eNetExp,v.SC,win);
+[eSC] = storage(E_av,eNeed,v.SC,win);
 disp('Energy Available in SuperCap in the Next Window (J):')
 disp(eSC(end))
     end
