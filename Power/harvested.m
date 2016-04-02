@@ -1,42 +1,24 @@
-function [ h_energy, h_voltage, E_av] = harvested(data,win)
-HT = input('Harvesting Technique Used? ','s');
-if isempty(HT)
-    HT = 'Solar';
-end
+function [ h_energy,E_av ] = harvested(data,win,input,input1)
 l = length(data);
 h_energy = zeros(1,l);
-h_voltage = zeros(1,l);
-
-% Energey harvested for a given solar panel, In joules
-switch HT
+% h_voltage = zeros(1,l);
+% Energy harvested for a given solar panel, In joules
+switch input.HT
     
     case 'Solar'
-        area = input('Area of the Solar Cell? (cm^2)');
-        if isempty(area)
-              area = 40;
-        end
-        effciency = input('Effcieny of the Solar Cell? (Decmial Form)');
-        if isempty(effciency)
-              effciency = .07;
-        end
-        i_sc = input('What is the maximum current provided by solar cell? (A)');
-        if isempty(i_sc)
-              i_sc = 2; 
-        end
-
-    HT_info = struct('area',area,'effciency',effciency);
     
     for x = 1:l
-    h_energy(x) = (HT_info.area * HT_info.effciency * data(x));
-    h_voltage(x) = (HT_info.area * HT_info.effciency * data(x))/i_sc;
+    h_energy(x) = (input.area * input.effciency * data(x)*input1.res);
+%     h_voltage(x) = (input.area * input.effciency * data(x))/input.i_sc;
     end
-    E_av = sum(h_energy((l-win):l));
+    
+    E_av = Trace_Eav(h_energy,win);
 
     case 'Human Kinetic'
         disp('To be Specified')
 % Add Case Statements for more diffrent techniques
     otherwise
-        disp('Harvesting TEchnique Not Specified')
+        disp('Harvesting Technique Not Specified')
         
 end
 
