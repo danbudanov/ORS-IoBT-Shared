@@ -67,7 +67,7 @@ if discharge
     if x == 1
         eSC(x) = 0;
     else
-      eSC(x) = eSC(x-1) - eNeed(x);
+      eSC(x) = eSC(x-1) - eNeed;
     end
      %^implement disharging function: energy to be used in active mode for
      %the next window

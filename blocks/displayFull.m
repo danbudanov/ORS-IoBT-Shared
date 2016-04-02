@@ -1,4 +1,4 @@
-function displayFull(eAvVec)
+function displayFull(eAvVec,eSc)
 close all;
 setup;
 

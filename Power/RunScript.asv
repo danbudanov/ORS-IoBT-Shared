@@ -7,25 +7,26 @@ lineskp = 1;
 len = length(time);
 irrandance = NaNDetect(irrandance);
 irrandance = MovingAverage(irrandance,win);
-[harvestedEnergy,Eav] = harvested(irrandance,win,v.HT,v.data);
+[harvestedEnergy,E_av] = harvested(irrandance,win,v.HT,v.data);
 disp('Energy Available in the Last Window (J):')
-disp(Eav(end))
+disp(E_av(end))
 
 disp('Start Operation')
 setup;
-[~,~,~,~, eNetExp] = extendedOperation(config, Eav);
+[opADC, opTRX ,D_MCU, D_TRX, eNeed] = extendedOperation(config, E_av);
 disp('Finish Operation')
 
-[eSC] = storage(Eav,eNetExp,v.SC,win);
+[eSC] = storage(E_av,eNeed,v.SC,win);
 disp('Energy Available in SuperCap in the Last Window (J):')
 disp(eSC(end))
 
 %Add FeedBack
 
-displayFull(Eav,eSC)
+PlotVal
+
 
 %% Predictive Loop
-% loop = true;
+loop = true;
 disp(['Predictive Method Used : ' v.PM.op])
 % while(loop)
 %     loop = input('Stop? (y/n) ','s');
@@ -36,27 +37,26 @@ disp(['Predictive Method Used : ' v.PM.op])
 %         continue
 %     end
     
-v.limit = input('How many windows?'); 
-disp('Prediticing Now...')
+inout 
 
     for x = 1:v.limit
 [time,irrandance] = future(time,irrandance,win,v.PM);
 
-[harvestedEnergy,Eav] = harvested(irrandance,win,v.HT,v.data);
+[harvestedEnergy,E_av] = harvested(irrandance,win,v.HT,v.data);
 disp('Energy Available in the Next Window (J):')
-disp(Eav(end))
+disp(E_av(end))
 
 disp('Start Operation')
-[~,~,~,~, eNeed] = extendedOperation(config, Eav);
+[opADC, opTRX ,D_MCU, D_TRX, eNeed] = extendedOperation(config, E_av);
 disp('Finish Operation')
 
-[eSC] = storage(Eav,eNeed,v.SC,win);
+[eSC] = storage(E_av,eNeed,v.SC,win);
 disp('Energy Available in SuperCap in the Next Window (J):')
 disp(eSC(end))
     end
 %Add FeedBack
 
-displayFull(Eav,eSC)
+PlotVal
 
 %{
 % Old
@@ -78,4 +78,4 @@ displayFull(Eav,eSC)
 % % disp(E_sc)
 % % disp((E_sc*30)/2)
 %}
-% end
+end

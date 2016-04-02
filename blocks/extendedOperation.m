@@ -1,4 +1,4 @@
-function [opCycleADC opCycleTRX, D_MCU, D_TRX, bytesVec] = extendedOperation(config, vec)
+function [opCycleADC, opCycleTRX, D_MCU, D_TRX, bytesVec] = extendedOperation(config, vec)
 % vector vec contains available energies
 opCycleADC = [];
 opCycleTRX = [];
