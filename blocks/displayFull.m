@@ -20,6 +20,9 @@ eSc = eSc(:)';
 % eScInterp = interp1(times, eSc, tSpaced, 'pchip');
 subplot(5,1,1)
 plot(times, eSc);
+title('Supercapacitor Energy Plot');
+ylabel('Energy (J)');
+xlabel('Time (s)');
 % Available Energy Plot
 subplot(5,1,2)
 % numWin = 0:length(eAvVec)-1;

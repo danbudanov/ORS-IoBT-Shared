@@ -11,17 +11,24 @@ varMCU = var(D_MCU);
 
 numWin = 0:length(eAvVec)-1;
 times = config.k*config.T_tx * numWin;
-
-% Supercapacitor Energy Plot
-tSpaced = linspace(times(1), times(end), length(eSc)*100);
-eScInterp = interp(tSpaced, eSc, 
-
-% Available Energy Plot
-subplot(4,1,1)
-% numWin = 0:length(eAvVec)-1;
-% times = config.k*config.T_tx * numWin;
 times = [times; times + config.k*config.T_tx-1e-9];
 times = times(:)';
+% Supercapacitor Energy Plot
+eSc = [eSc; eSc];
+eSc = eSc(:)';
+% tSpaced = linspace(times(1), times(end), length(eSc)*100);
+% eScInterp = interp1(times, eSc, tSpaced, 'pchip');
+subplot(5,1,1)
+plot(times, eSc);
+title('Supercapacitor Energy Plot');
+ylabel('Supercapacitor energy(J)');
+xlabel('
+% Available Energy Plot
+subplot(5,1,2)
+% numWin = 0:length(eAvVec)-1;
+% times = config.k*config.T_tx * numWin;
+% times = [times; times + config.k*config.T_tx-1e-9];
+% times = times(:)';
 enVec = [eAvVec; eAvVec];
 enVec = enVec(:)';
 plot(times, enVec);
@@ -30,7 +37,7 @@ ylabel('Energy (J)');
 title('Energy Available');
 
 % Power used during operation plot
-subplot(4,1,2)
+subplot(5,1,3)
 % plot(opADC(1,:), opADC(2, :), 'b');
 semilogy(opADC(1,:), opADC(2, :), 'b');
 hold on;
@@ -43,7 +50,7 @@ title(titleText);
 legend('Sample Readings', 'Transmission');
 
 % Net Duty Cycle Plot
-subplot(4,1,3)
+subplot(5,1,4)
 D_MCU = [D_MCU; D_MCU];
 D_MCU = D_MCU(:)';
 D_TRX = [D_TRX; D_TRX];
@@ -62,7 +69,7 @@ title('Duty Cycle');
 
 
 % Plot bytes transmitted
-subplot(4,1,4);
+subplot(5,1,5);
 bytesVec = [bytesVec; bytesVec];
 bytesVec = bytesVec(:)';
 plot(times, bytesVec);

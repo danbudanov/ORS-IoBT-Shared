@@ -10,54 +10,67 @@ lineskp = 1;
 len = length(time);
 irrandance = NaNDetect(irrandance);
 irrandance = MovingAverage(irrandance,win);
-[harvestedEnergy,E_av] = harvested(irrandance,win,v.HT,v.data);
+[harvestedEnergy,Eav] = harvested(irrandance,win,v.HT,v.data);
 disp('Energy Available in the Last Window (J):')
-disp(E_av(end))
+disp(Eav(end))
 
 disp('Start Operation')
 setup;
-[~, ~, ~, ~, ~, eNetExp] = extendedOperation(config, E_av);
+
+[~, ~, ~, ~, ~, eNetExp] = extendedOperation(config, Eav);
 disp('Finish Operation')
 
-[eSC] = storage(E_av,eNetExp,v.SC,win);
+[eSC] = storage(Eav,eNetExp,v.SC);
+
 disp('Energy Available in SuperCap in the Last Window (J):')
 disp(eSC(end))
 
 %Add FeedBack
-displayFull(E_av, eSC);
+
+displayFull(Eav, eSC);
 % PlotVal
 
-
 %% Predictive Loop
-loop = true;
+% loop = true;
 disp(['Predictive Method Used : ' v.PM.op])
-while(loop)
-    loop = input('Stop? (y/n) ','s');
-    if isempty(loop)
-        loop = true;
-    elseif strcmpi(loop,'y')
-        loop = false;
-        continue
-    end
+% while(loop)
+%     loop = input('Stop? (y/n) ','s');
+%     if isempty(loop)
+%         loop = true;
+%     elseif strcmpi(loop,'y')
+%         loop = false;
+%         continue
+%     end
     
+v.limit = input('How many windows? '); 
+disp('Prediticing Now...')
+
+if(isempty(v.limit))
+    disp('Exiting...')
+    return
+end
+
     for x = 1:v.limit
 [time,irrandance] = future(time,irrandance,win,v.PM);
 
-[harvestedEnergy,E_av] = harvested(irrandance,win,v.HT,v.data);
 disp('Energy Available in the Next Window (J):')
-disp(E_av(end))
+disp(Eav(end))
+
+[harvestedEnergy,Eav] = harvested(irrandance,win,v.HT,v.data);
 
 disp('Start Operation')
-[opADC, opTRX ,D_MCU, D_TRX, eNetExp] = extendedOperation(config, E_av);
+[opADC, opTRX ,D_MCU, D_TRX, eNetExp] = extendedOperation(config, Eav);
 disp('Finish Operation')
 
-[eSC] = storage(E_av,eNetExp,v.SC,win);
+[eSC] = storage(Eav,eNetExp,v.SC);
+
 disp('Energy Available in SuperCap in the Next Window (J):')
 disp(eSC(end))
     end
 %Add FeedBack
+disp('Done Predicting')
 
-PlotVal
+displayFull(Eav,eSC)
 
 %{
 % Old
@@ -79,4 +92,4 @@ PlotVal
 % % disp(E_sc)
 % % disp((E_sc*30)/2)
 %}
-end
+% end

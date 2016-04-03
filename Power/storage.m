@@ -1,4 +1,4 @@
-function [ eSC ] = storage(eAv,eNeed,input,~)
+function [ eSC ] = storage(eAv,eNeed,input)
 
 % in series with hardware, after, charged with leftover voltage from source
 % Look in daniil's code and fine the energy consumed by the HW
@@ -11,6 +11,7 @@ len = length(eAv);
 eSC = zeros(1,len);
 hit = 0;
 
+%SC States
 charge = true;
 hold = false;
 discharge = false;
@@ -20,6 +21,8 @@ discharge = false;
 %     storedEnergy(x) = ((.5*input.C)*(h_voltage(x)^2)-(.5*input.C)*(h_voltage(1)^2));
 %     E_sc = sum(storedEnergy((len-win):len));
 % end
+%     eSC(x) = ((.5*input.C)*(h_voltage(x)^2)-(.5*input.C)*(h_voltage(1)^2));
+
 
 for x = 1:len
     
@@ -59,6 +62,7 @@ for x = 1:len
             discharge = true;
         end
         continue
+
     end
     
     if discharge
@@ -83,5 +87,4 @@ for x = 1:len
 end
 disp('Took too Much :')
 disp( hit)
-% Esc = sum(eSC((len-win):len));
 end

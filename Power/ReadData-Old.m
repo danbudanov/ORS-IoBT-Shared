@@ -24,7 +24,7 @@ elseif nargin <= 0
     damp = 0;
     HT = 'solar';
     lineskp = 1 ;
-    file_name = 'mobile-car-test.txt.';
+    file_name = 'SetupF.txt.txt.';
 end
 
 
