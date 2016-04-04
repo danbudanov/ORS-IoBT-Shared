@@ -1,13 +1,13 @@
-function displayFull(eAvVec, eSc)
+function [avg, varr] = displayFull(eAvVec, eSc)
 close all;
 setup;
 
 [opADC, opTRX ,D_MCU, D_TRX, bytesVec] = extendedOperation(config, eAvVec);
 
-avgTRX = mean(D_TRX);
-avgMCU = mean(D_MCU);
-varTRX = var(D_TRX);
-varMCU = var(D_MCU);
+avg.TRX = mean(D_TRX);
+avg.MCU = mean(D_MCU);
+varr.TRX = var(D_TRX);
+varr.MCU = var(D_MCU);
 
 numWin = 0:length(eAvVec)-1;
 times = config.k*config.T_tx * numWin;

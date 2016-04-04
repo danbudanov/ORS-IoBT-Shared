@@ -1,0 +1,150 @@
+[33mcommit 33ed764d3fae08c292da1298035e9fb235918776[m
+Author: Dan Budanov <danbudanov@gmail.com>
+Date:   Sun Apr 3 12:18:11 2016 -0400
+
+    power changes and label
+
+[33mcommit f1d87500e3c3027d1033b96d10a1274c29ff2e86[m
+Author: danbudanov <danbudanov@gmail.com>
+Date:   Sat Apr 2 14:23:03 2016 -0400
+
+    together
+
+[33mcommit 14e1a1044b95ba1dcde991bf68d272f566c1bf55[m
+Merge: 816c52b 09b7c86
+Author: danbudanov <danbudanov@gmail.com>
+Date:   Sat Apr 2 12:20:27 2016 -0400
+
+    Merge pull request #2 from danbudanov/Mine
+    
+    Data Files upload
+
+[33mcommit 09b7c860afbd228a6d913ee7596d50b868613e96[m
+Author: MalikB <barton.malik@gmail.com>
+Date:   Sat Apr 2 12:18:33 2016 -0400
+
+    Data Files upload
+
+[33mcommit 816c52b8872890edef46fdbb3eb1313cdde7bcdf[m
+Merge: a7de320 ae46cf0
+Author: danbudanov <danbudanov@gmail.com>
+Date:   Sat Apr 2 12:05:01 2016 -0400
+
+    Merge pull request #1 from danbudanov/Mine
+    
+    Merge Malik's code with sensor mote simulation
+
+[33mcommit ae46cf05ac9dad0e1d6dae004fe895b0f3622dae[m
+Author: MalikB <barton.malik@gmail.com>
+Date:   Sat Apr 2 11:57:29 2016 -0400
+
+    New Code
+
+[33mcommit a7de3204784eb3c35d99c399ecafd783901046ca[m
+Author: danbudanov <danbudanov@gmail.com>
+Date:   Wed Mar 30 15:37:40 2016 -0400
+
+    Plot avg and calculate stdev duty cycle
+
+[33mcommit 4a2ee3faf3c06fcd427936c9d08f9db75f75b6e9[m
+Author: danbudanov <danbudanov@gmail.com>
+Date:   Tue Mar 29 17:17:42 2016 -0400
+
+    Statistics
+
+[33mcommit 711d53962675c5c5c5eec2707bd87ffa00df2353[m
+Author: danbudanov <danbudanov@gmail.com>
+Date:   Tue Mar 29 16:34:47 2016 -0400
+
+    Added average to duty cycle
+
+[33mcommit 3ff24dd817761c6dcbe0446812b560c4cc1b661e[m
+Author: danbudanov <danbudanov@gmail.com>
+Date:   Mon Mar 28 19:01:29 2016 -0400
+
+    displayFull, cleaning-upping
+
+[33mcommit e823f510f18d993bafb1ef2eff7821880200644f[m
+Author: danbudanov <danbudanov@gmail.com>
+Date:   Wed Mar 23 23:22:25 2016 -0400
+
+    Minor commentary and organization
+
+[33mcommit ff5cabc966c90af327697027e481079ff77124a7[m
+Author: danbudanov <danbudanov@gmail.com>
+Date:   Wed Mar 23 12:24:48 2016 -0400
+
+    Added label to operation plot
+
+[33mcommit 62021d1e398fb206624ae93083c2402dedecbe67[m
+Author: danbudanov <danbudanov@gmail.com>
+Date:   Wed Mar 23 12:20:06 2016 -0400
+
+    Fixed time sizing problems
+    
+    Was passing config.k into cycle where it was unnecessary in
+    operateWindow()
+
+[33mcommit 3fb052811dab63a850d58ecba3d578efcb31d96a[m
+Author: danbudanov <danbudanov@gmail.com>
+Date:   Wed Mar 23 12:12:01 2016 -0400
+
+    Tackling window operation
+
+[33mcommit d0c8ff286559e747fbf37b217ac4fd703a7c984b[m
+Author: danbudanov <danbudanov@gmail.com>
+Date:   Wed Mar 23 01:21:00 2016 -0400
+
+    Looking at problem in operation generation
+    
+    eAv < .32 causes problems in sleep
+
+[33mcommit 1d85be742b2e7f9495546d941287396db20472e3[m
+Author: danbudanov <danbudanov@gmail.com>
+Date:   Wed Mar 23 01:01:58 2016 -0400
+
+    Nicer duty cycling
+
+[33mcommit 1b1463d91eebddbb8d6385cea38eda0731757be1[m
+Author: danbudanov <danbudanov@gmail.com>
+Date:   Tue Mar 22 17:33:30 2016 -0400
+
+    Added duty cycle plots
+
+[33mcommit ab17bce087d440eb03cdfbaf6b73887f23e2876d[m
+Author: danbudanov <danbudanov@gmail.com>
+Date:   Tue Mar 22 17:15:46 2016 -0400
+
+    Plot energy available and used
+
+[33mcommit 1e1db56c682d795f9cbaedcc3a4d2b65d9dbf1ed[m
+Author: danbudanov <danbudanov@gmail.com>
+Date:   Tue Mar 22 16:51:27 2016 -0400
+
+    Added extended operation
+    
+    Input vector with eAv's and receive MCU and TRX operation vectors
+
+[33mcommit cb5a14ac2ed26e73316b50cb2586c1c8d26f439e[m
+Author: danbudanov <danbudanov@gmail.com>
+Date:   Mon Mar 21 22:46:46 2016 -0400
+
+    Display window with duty cycles
+
+[33mcommit 6654633650256b5b5c2d8d17ab622f25f0b8bf30[m
+Author: danbudanov <danbudanov@gmail.com>
+Date:   Mon Mar 21 14:49:42 2016 -0400
+
+    Implemented proportional duty cycle
+
+[33mcommit 9c568d4af0eeb5140212150ee2cd77e9a2ffa9ae[m
+Author: danbudanov <danbudanov@gmail.com>
+Date:   Fri Mar 18 13:33:45 2016 -0400
+
+    Initial Upload
+
+[33mcommit f0c8bf3ac57644ff41e0fa3ce58f878f7869f395[m
+Author: danbudanov <danbudanov@gmail.com>
+Date:   Sun Mar 6 00:53:36 2016 -0500
+
+    :circus_tent: Added .gitattributes

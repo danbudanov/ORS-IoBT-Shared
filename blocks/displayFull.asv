@@ -1,13 +1,13 @@
-function displayFull(eAvVec, eSc)
+function [avdisplayFull(eAvVec, eSc)
 close all;
 setup;
 
 [opADC, opTRX ,D_MCU, D_TRX, bytesVec] = extendedOperation(config, eAvVec);
 
-avgTRX = mean(D_TRX);
-avgMCU = mean(D_MCU);
-varTRX = var(D_TRX);
-varMCU = var(D_MCU);
+avg.TRX = mean(D_TRX);
+avg.MCU = mean(D_MCU);
+var.TRX = var(D_TRX);
+var.MCU = var(D_MCU);
 
 numWin = 0:length(eAvVec)-1;
 times = config.k*config.T_tx * numWin;
@@ -21,8 +21,8 @@ eSc = eSc(:)';
 subplot(5,1,1)
 plot(times, eSc);
 title('Supercapacitor Energy Plot');
-ylabel('Supercapacitor energy(J)');
-xlabel('
+ylabel('Energy (J)');
+xlabel('Time (s)');
 % Available Energy Plot
 subplot(5,1,2)
 % numWin = 0:length(eAvVec)-1;
